@@ -1,5 +1,3 @@
 // Shoot Them Up Game, All Rights Reserved.
 
-#pragma once
-
-#include "CoreMinimal.h"
+#include "Player/STUPlayerController.h"
