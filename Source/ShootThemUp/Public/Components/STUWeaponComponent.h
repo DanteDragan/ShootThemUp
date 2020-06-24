@@ -44,6 +44,7 @@ private:
     TArray<ASTUBaseWeapon*> Weapons;
 
     int32 CurrentWeaponIndex = 0;
+    bool EquipAnimInProgress = false;
 
     void InitAnimations();
     void SpawnWeapons();
@@ -53,4 +54,8 @@ private:
     void PlayAnimMontage(UAnimMontage* Animation);
 
     void OnEquipFinished(USkeletalMeshComponent* MeshComp);
+
+    bool CanFire() const;
+    bool CanEquip() const;
+
 };
