@@ -20,23 +20,11 @@ public class ShootThemUp : ModuleRules
             "NavigationSystem"
         });
 
-        PrivateDependencyModuleNames.AddRange(new string[] { });
+        PrivateDependencyModuleNames.AddRange(new string[] {});
 
         PublicIncludePaths.AddRange(new string[]
         {
-            "ShootThemUp/Public/Player",
-            "ShootThemUp/Public/Components",
-            "ShootThemUp/Public/Dev",
-            "ShootThemUp/Public/Weapon",
-            "ShootThemUp/Public/UI",
-            "ShootThemUp/Public/Animations",
-            "ShootThemUp/Public/Pickups",
-            "ShootThemUp/Public/Weapon/Components",
-            "ShootThemUp/Public/AI",
-            "ShootThemUp/Public/AI/Tasks",
-            "ShootThemUp/Public/AI/Services",
-            "ShootThemUp/Public/AI/EQS",
-            "ShootThemUp/Public/AI/Decorators"
+            
         });
 
         // Uncomment if you are using Slate UI

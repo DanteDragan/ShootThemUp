@@ -8,8 +8,6 @@
 #include "NiagaraFunctionLibrary.h"
 #include "NiagaraComponent.h"
 
-DEFINE_LOG_CATEGORY_STATIC(LogBaseWeapon, All, All);
-
 ASTUBaseWeapon::ASTUBaseWeapon()
 {
     PrimaryActorTick.bCanEverTick = false;
@@ -23,8 +21,8 @@ void ASTUBaseWeapon::BeginPlay()
     Super::BeginPlay();
 
     check(WeaponMesh);
-    checkf(DefaultAmmo.Bullets > 0, TEXT("Bullets count couldn't be less or equal zero"));
-    checkf(DefaultAmmo.Clips > 0, TEXT("Clips count couldn't be less or equal zero"));
+    checkf(DefaultAmmo.Bullets > 0, TEXT("Bullets amount couldn't be less or equal zero"));
+    checkf(DefaultAmmo.Clips > 0, TEXT("Clips amount couldn't be less or equal zero"));
     CurrentAmmo = DefaultAmmo;
 }
 

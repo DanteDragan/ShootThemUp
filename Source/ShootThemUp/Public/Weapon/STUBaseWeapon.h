@@ -10,67 +10,69 @@
 class USkeletalMeshComponent;
 class UNiagaraSystem;
 class UNiagaraComponent;
-
+// Базовый класс оружия, от него наследуются все остальные.
+// Определены функции, связанные с арсеналом, сменой обойм, спавном FX
 UCLASS()
 class SHOOTTHEMUP_API ASTUBaseWeapon : public AActor
 {
-    GENERATED_BODY()
+	GENERATED_BODY()
 
 public:
-    ASTUBaseWeapon();
+	ASTUBaseWeapon();
 
-    FOnClipEmptySignature OnClipEmpty;
+	FOnClipEmptySignature OnClipEmpty;
 
-    virtual void StartFire();
-    virtual void StopFire();
+	virtual void StartFire();
+	virtual void StopFire();
 
-    void ChangeClip();
-    bool CanReload() const;
+	void ChangeClip();
+	bool CanReload() const;
 
-    FWeaponUIData GetUIData() const { return UIData; }
-    FAmmoData GetAmmoData() const { return CurrentAmmo; }
+	FWeaponUIData GetUIData() const { return UIData; }
+	FAmmoData GetAmmoData() const { return CurrentAmmo; }
 
-    bool TryToAddAmmo(int32 ClipsAmount);
-    bool IsAmmoEmpty() const;
-    bool IsAmmoFull() const;
+	bool TryToAddAmmo(int32 ClipsAmount);
+	bool IsAmmoEmpty() const;
+	bool IsAmmoFull() const;
 
 protected:
-    UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Components")
-    USkeletalMeshComponent* WeaponMesh;
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Components")
+	USkeletalMeshComponent* WeaponMesh;
 
-    UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Weapon")
-    FName MuzzleSocketName = "MuzzleSocket";
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Weapon")
+	FName MuzzleSocketName = "MuzzleSocket";
 
-    UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Weapon")
-    float TraceMaxDistance = 1500.0f;
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Weapon")
+	float TraceMaxDistance = 1500.0f;
 
-    UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Weapon")
-    FAmmoData DefaultAmmo{15, 10, false};
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Weapon")
+	FAmmoData DefaultAmmo{15, 10, false};
 
-    UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "UI")
-    FWeaponUIData UIData;
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "UI")
+	FWeaponUIData UIData;
 
-    UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "VFX")
-    UNiagaraSystem* MuzzleFX;
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "VFX")
+	UNiagaraSystem* MuzzleFX;
 
-    virtual void BeginPlay() override;
+	virtual void BeginPlay() override;
 
-    virtual void MakeShot();
-    virtual bool GetTraceData(FVector& TraceStart, FVector& TraceEnd) const;
+	virtual void MakeShot();
+	virtual bool GetTraceData(FVector& TraceStart, FVector& TraceEnd) const;
 
-    APlayerController* GetPlayerController() const;
-    bool GetPlayerViewPoint(FVector& ViewLocation, FRotator& ViewRotation) const;
-    FVector GetMuzzleWorldLocation() const;
+	APlayerController* GetPlayerController() const;
+	bool GetPlayerViewPoint(FVector& ViewLocation, FRotator& ViewRotation) const;
+	FVector GetMuzzleWorldLocation() const;
 
-    void MakeHit(FHitResult& HitResult, const FVector& TraceStart, const FVector& TraceEnd);
+	void MakeHit(FHitResult& HitResult, const FVector& TraceStart,
+	             const FVector& TraceEnd);
 
-    void DecreaseAmmo();
-    bool IsClipEmpty() const;
+	void DecreaseAmmo();
+	bool IsClipEmpty() const;
 
-    void LogAmmo();
+	void LogAmmo();
 
-    UNiagaraComponent* SpawnMuzzleFX();
+	UNiagaraComponent* SpawnMuzzleFX();
 
 private:
-    FAmmoData CurrentAmmo;
+	FAmmoData CurrentAmmo;
 };

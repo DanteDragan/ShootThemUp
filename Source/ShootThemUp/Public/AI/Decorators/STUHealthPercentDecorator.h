@@ -7,6 +7,7 @@
 #include "STUHealthPercentDecorator.generated.h"
 
 UCLASS()
+
 class SHOOTTHEMUP_API USTUHealthPercentDecorator : public UBTDecorator
 {
     GENERATED_BODY()
